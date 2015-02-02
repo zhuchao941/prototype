@@ -2,6 +2,12 @@ package com.zhu.prototype.dto;
 
 import java.io.Serializable;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(value = org.springframework.web.context.WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserPreferences implements Serializable {
 	/**
 	 * 

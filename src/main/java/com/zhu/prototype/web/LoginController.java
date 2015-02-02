@@ -1,6 +1,6 @@
 package com.zhu.prototype.web;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,25 +12,26 @@ import com.zhu.prototype.dto.UserPreferences;
 @Controller
 public class LoginController {
 
+	@Resource
+	private UserPreferences userPreferences;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginPage() {
 		return "user/login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String submitLoginForm(LoginDTO loginDTO, HttpSession session) {
-		if ("success".equals(validateUser(loginDTO, session))) {
+	public String submitLoginForm(LoginDTO loginDTO) {
+		if ("success".equals(validateUser(loginDTO))) {
 			return "user/success";
 		}
 		return showLoginPage();
 	}
 
-	private String validateUser(LoginDTO loginDTO, HttpSession session) {
+	private String validateUser(LoginDTO loginDTO) {
 		if (loginDTO.getUsername().equals("zhu")
 				&& loginDTO.getPassword().equals("1234")) {
-			UserPreferences preferences = new UserPreferences();
-			preferences.setUsername(loginDTO.getUsername());
-			session.setAttribute("userPreferences", preferences);
+			userPreferences.setUsername(loginDTO.getUsername());
 			return "success";
 		}
 		return "fail";
