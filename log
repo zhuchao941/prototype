@@ -1,0 +1,6 @@
+1、完成maven工程创建及导入MyEclipse
+2、完成login demo，并开始使用return String来返回ModelAndView
+	此时Model可以采用@ModelAndView，也可以用Model来添加
+	其中使用了Velocity一个配置，暴露出了sessionAttributes
+3、在Java中要执行cmd命令，若是带有">"，要紧跟在命令后面，不能有空格
+4、
