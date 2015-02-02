@@ -3,7 +3,7 @@
   type="WEB"
   name="spring"
   id="myeclipse.1422840983224"
-  context-root="/prototype"
+  context-root="/spring"
   j2ee-spec="5.0"
   archive="spring.war">
   <attributes>
