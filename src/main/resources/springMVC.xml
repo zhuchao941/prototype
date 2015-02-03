@@ -15,8 +15,8 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.zhu "/>
-	
+	<context:component-scan base-package="com.zhu " />
+
 	<!-- velocity的配置 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
@@ -37,7 +37,23 @@
 			</props>
 		</property>
 	</bean>
-	
-	<!--<mvc:annotation-driven />-->
-	
+
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="com.zhu.prototype.web.support.formatter.DateFormatter"></bean>
+			</set>
+		</property>
+	</bean>
+
+	<mvc:annotation-driven conversion-service="conversionService"/>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="fileEncodings" value="utf-8" />
+		<property name="cacheSeconds" value="120" />
+	</bean>
+
 </beans>
