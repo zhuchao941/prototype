@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>register</title>
+	</head>
+	<body>
+		<br/>
+		<form action="register" method="post">
+			#springBind("user.*")
+			#springShowErrors("<br/>" "color:red")
+			Name:
+			#springFormInput("user.username" "")
+			#springShowErrors("" "color:red")
+			<br />
+			Password:
+			#springFormPasswordInput("user.password" "")
+			#springShowErrors("" "color:red")
+			<br />
+			Again:
+			#springFormPasswordInput("user.password2" "")
+			#springShowErrors("" "color:red")
+			<br />
+			BirthDay:
+			#springFormInput("user.birthday" "")
+			#springShowErrors("" "color:red")
+			<br />
+			Height:
+			#springFormInput("user.height" "")
+			#springShowErrors("" "color:red")
+			<br />
+			<input type="submit" value="submit" />
+			<br />
+		</form>
+	</body>
+</html>
