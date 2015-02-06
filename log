@@ -3,4 +3,6 @@
 	此时Model可以采用@ModelAndView，也可以用Model来添加
 	其中使用了Velocity一个配置，暴露出了sessionAttributes
 3、在Java中要执行cmd命令，若是带有">"，要紧跟在命令后面，不能有空格
-4、
+
+4、Spring的校验终于弄好了，并做了一个register的demo
+5、熟练git操作
