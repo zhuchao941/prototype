@@ -6,3 +6,7 @@
 
 4、Spring的校验终于弄好了，并做了一个register的demo
 5、熟练git操作
+
+6、添加了MBG maven插件，并学习了MGB配置的多个参数，包括：plugins、table中的columnOveride，ignore等
+7、添加了tomcat maven插件，发现使用tomcat7会造成mybatis的mapper的log打印不出来，所以换成tomcat6的了，测试成功，并可以远程部署
+8、添加了metro nic的资源文件，接下来要将metro nic应用到本项目中去
