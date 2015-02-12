@@ -34,10 +34,11 @@ public class UserController {
 	}
 
 	private String validateUser(User user, HttpSession session) {
-		if (user.getUsername().equals("zhu")
+		if (user.getEmail().equals("339357762@qq.com")
 				&& user.getPassword().equals("1234")) {
 			UserPreferences preferences = new UserPreferences();
 			preferences.setUsername(user.getUsername());
+			preferences.setEmail(user.getEmail());
 			session.setAttribute("userPreferences", preferences);
 			return "success";
 		}
