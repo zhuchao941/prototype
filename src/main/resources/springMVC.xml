@@ -47,12 +47,23 @@
 			</set>
 		</property>
 	</bean>
-
-	<mvc:resources location="classpath:/" mapping="/resources/**"/>
-	<mvc:resources location="classpath:plugin/assets/" mapping="/assets/**"/>
-
 	<mvc:annotation-driven conversion-service="conversionService" />
 
+	<!--<mvc:resources location="classpath:/" mapping="/resources/**"/>-->
+	<mvc:resources mapping="/assets/**" location="classpath:/plugin/assets/" />
+	
+	<bean id="resourceHttpRequestHandler" class="org.springframework.web.servlet.resource.ResourceHttpRequestHandler">
+		<property name="locations" value="classpath:/plugin/assets/"></property>	
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/assets/**">resourceHttpRequestHandler</prop>
+			</props>
+		</property>
+	</bean>
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
@@ -61,5 +72,6 @@
 	</bean>
 	
 	<import resource="classpath:mybatis.xml"/>
+	
 
 </beans>
