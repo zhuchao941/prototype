@@ -10,3 +10,11 @@
 6、添加了MBG maven插件，并学习了MGB配置的多个参数，包括：plugins、table中的columnOveride，ignore等
 7、添加了tomcat maven插件，发现使用tomcat7会造成mybatis的mapper的log打印不出来，所以换成tomcat6的了，测试成功，并可以远程部署
 8、添加了metro nic的资源文件，接下来要将metro nic应用到本项目中去
+
+9、由于出了几个很烦人的问题，以至于一直很烦躁也没有继续做什么下去，不过还是把烦人的问题解决掉了，如：
+	<mvc:resources>新老版本解析的类有变化导致报错
+	tomcat7 maven插件不会打印mybatis Mapper的log（可能是动态代理的类都不会）
+	tomcat maven插件用tomcat:run跑时debug会出现source not found（至今没有解决）
+	而tomcat maven远程部署上去跑的话，对页面的修改是不会热部署的，哎，好像很蛋疼的样子
+	
+10、
