@@ -10,13 +10,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>3.2.10.RELEASE</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>3.2.10.RELEASE</version>
 			<type>jar</type>
@@ -91,7 +84,13 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>3.2.10.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency></dependencies>
 	<build>
 		<finalName>prototype</finalName>
 		<plugins>
