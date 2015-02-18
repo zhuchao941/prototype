@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
+Version: 1.5.2
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+   <meta charset="utf-8" />
+   <title>#springMessage("login.page.title")</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <meta content="" name="description" />
+   <meta content="" name="author" />
+   <meta name="MobileOptimized" content="320">
+   <!-- BEGIN GLOBAL MANDATORY STYLES -->          
+   <link href="$!{contextPath}/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+   <!-- END GLOBAL MANDATORY STYLES -->
+   <!-- BEGIN PAGE LEVEL STYLES --> 
+   <link rel="stylesheet" type="text/css" href="$!{contextPath}/assets/plugins/select2/select2_metro.css" />
+   <!-- END PAGE LEVEL SCRIPTS -->
+   <!-- BEGIN THEME STYLES --> 
+   <link href="$!{contextPath}/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/css/style.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+   <link href="$!{contextPath}/assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
+   <link href="$!{contextPath}/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+   <!-- END THEME STYLES -->
+   <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="login">
+   <!-- BEGIN LOGO -->
+   <div class="logo">
+      <img src="$!{contextPath}/assets/img/logo-big.png" alt="" /> 
+   </div>
+   <!-- END LOGO -->
+	<div class='alert alert-info alert-dismissible' role='alert'>
+		<button type='button' class='close' data-dismiss='alert'>
+			<span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span>
+		</button>
+		<strong>提示</strong> 使用UC浏览器可获得最优体验
+	</div>
+	<div class='list-group'>
+		#foreach($news in $!newsList)
+		  <a href='$!news.id' class='list-group-item'>
+		    <h4 class='list-group-item-heading'>$!news.title</h4>
+		    <p class='list-group-item-text'>
+		    	#if($!news.picurl)
+		    		<img src='$!{contextPath}/download/img/$!news.picurl' class='list-image'/>
+		    	#end
+	    		$!news.content
+		    </p>
+		  </a>
+		#end
+	</div>
+	<div class='load-info'>请等待，正在为您加载新闻……</div>
+
+	<!-- BEGIN COPYRIGHT -->
+   <div class="copyright">
+      2013 &copy; Metronic - Admin Dashboard Template.
+   </div>
+   <!-- END COPYRIGHT -->
+   <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+   <!-- BEGIN CORE PLUGINS -->   
+   <!--[if lt IE 9]>
+   <script src="$!{contextPath}/assets/plugins/respond.min.js"></script>
+   <script src="$!{contextPath}/assets/plugins/excanvas.min.js"></script> 
+   <![endif]-->   
+   <script src="$!{contextPath}/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
+   <script src="$!{contextPath}/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>  
+   <script src="$!{contextPath}/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+   <!-- END CORE PLUGINS -->
+   <!-- BEGIN PAGE LEVEL PLUGINS -->
+   <script src="$!{contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/jquery-validation/localization/messages_zh.js" type="text/javascript"></script>
+   <script src="$!{contextPath}/assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="$!{contextPath}/assets/plugins/select2/select2.min.js"></script>
+   <!-- END PAGE LEVEL PLUGINS -->
+   <!-- BEGIN PAGE LEVEL SCRIPTS -->
+   <script src="$!{contextPath}/assets/scripts/app.js" type="text/javascript"></script>
+   <!-- END PAGE LEVEL SCRIPTS --> 
+   <script>
+      jQuery(document).ready(function() {     
+        App.init();
+      });
+   </script>
+   <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
