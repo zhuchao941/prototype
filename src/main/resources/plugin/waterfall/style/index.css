@@ -310,7 +310,7 @@
 .waterfull ul li .a-img img{
 	width: 284px;
 	display: block;
-	min-height: 250px;
+	min-height: none;
 }
 .waterfull ul li .li-title{
 	padding: 5px 0;
