@@ -15,7 +15,7 @@ import com.zhu.prototype.dto.UserPreferences;
 import com.zhu.prototype.entity.User;
 
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 
 	@Resource
 	private Validator userValidator;
@@ -28,7 +28,7 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String submitLoginForm(User user, HttpSession session) {
 		if ("success".equals(validateUser(user, session))) {
-			return "user/login-success";
+			return "news/newsList";
 		}
 		return showLoginPage();
 	}
