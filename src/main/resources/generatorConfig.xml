@@ -4,43 +4,48 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-  <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
+	<classPathEntry
+		location="C:\Users\Zhu\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
 
-  <context id="MysqlTables" targetRuntime="MyBatis3">
-  
-    <commentGenerator>
-    	<property name="suppressAllComments" value="false"/>
-    	<property name="suppressDate" value="false"/>
-    </commentGenerator>
+	<context id="MysqlTables" targetRuntime="MyBatis3">
 
-	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-		connectionURL="jdbc:mysql://localhost:3306/prototype" userId="root"
-		password="123456">
-	</jdbcConnection>
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="false" />
+		</commentGenerator>
 
-    <javaTypeResolver >
-      <property name="forceBigDecimals" value="false" />
-    </javaTypeResolver>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/prototype" userId="root"
+			password="123456">
+		</jdbcConnection>
 
-    <javaModelGenerator targetPackage="com.zhu.prototype.entity" targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
-    </javaModelGenerator>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
 
-    <sqlMapGenerator targetPackage="com.zhu.prototype.dao"  targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-    </sqlMapGenerator>
+		<javaModelGenerator targetPackage="com.zhu.prototype.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
 
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhu.prototype.dao"  targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-    </javaClientGenerator>
-    
-    <table tableName="user" domainObjectName="User" >
-    </table>
-    
-    <table tableName="news" domainObjectName="News" >
-    	<generatedKey identity="true" column="id" sqlStatement="MySql"/>
-    </table>
-    
-  </context>
+		<sqlMapGenerator targetPackage="com.zhu.prototype.dao"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.zhu.prototype.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="user" domainObjectName="User">
+		</table>
+
+		<table tableName="news" domainObjectName="News">
+			<generatedKey column="id"
+				sqlStatement="select IF(MAX(id) is not null, MAX(id) + 1,CONCAT(DATE_FORMAT(NOW(),'%Y%m%d'),'0001')) from news where abs(datediff(date, now())) = 0;" />
+		</table>
+
+	</context>
 </generatorConfiguration>
