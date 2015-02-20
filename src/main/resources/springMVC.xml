@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
@@ -57,13 +57,21 @@
 
 	<bean id="resourceHttpRequestHandler"
 		class="org.springframework.web.servlet.resource.ResourceHttpRequestHandler">
-		<property name="locations" value="classpath:/plugin/assets/"></property>
+		<property name="locations">
+			<list>
+				<value>classpath:/plugin/</value>
+				<value>/download/</value>
+				<value>classpath:/META-INF/</value>
+			</list>
+		</property>
 	</bean>
-
+	
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="/assets/**">resourceHttpRequestHandler</prop>
+				<prop key="/plugin/**">resourceHttpRequestHandler</prop>
+				<prop key="/download/**">resourceHttpRequestHandler</prop>
+				<prop key="/resources/**">resourceHttpRequestHandler</prop>
 			</props>
 		</property>
 	</bean>
@@ -84,7 +92,7 @@
 			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
+	
 	<import resource="classpath:mybatis.xml" />
 
 
