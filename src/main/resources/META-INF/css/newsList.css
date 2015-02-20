@@ -1,0 +1,22 @@
+h2 {
+	font-family: "微软雅黑", "Lucida Grande", "Lucida Sans", Helvetica, Arial,
+		Sans;
+	font-size: 2em;
+	margin: 0;
+	padding: 0;
+	font-weight: bold !important;
+}
+
+.waterfull ul li .description {
+	max-height: none;
+}
+
+p {
+	margin: 0;
+}
+
+.waterfull ul li {
+	/** 也不知道bootstrap的布局是怎么样的，反正padding之后width不会变大 **/
+	width: 302px;
+	padding: 8px;
+}
