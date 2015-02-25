@@ -3,7 +3,11 @@
 <mapper namespace="com.zhu.prototype.dao.NewsMapperExtend">
 
 	<select id="getNewsPageList" resultType="com.zhu.prototype.entity.News">
-		select * from news limit #{begin}, #{rows}
+		select * from news
+		<if test="orderByClause != null and orderByClause != ''">
+			order by ${orderByClause} 
+		</if>
+		limit #{begin}, #{rows}
 	</select>
-	
+
 </mapper>
