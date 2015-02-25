@@ -16,4 +16,6 @@ public interface NewsService {
 	@SuppressWarnings("rawtypes")
 	public List<News> getNewsList(Map paramMap, PageDTO pageDTO);
 	
+	public News getNewsById(String id);
+	
 }

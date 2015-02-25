@@ -16,6 +16,7 @@ import com.zhu.prototype.dto.PageDTO;
 import com.zhu.prototype.entity.News;
 import com.zhu.prototype.entity.NewsExample;
 import com.zhu.prototype.service.NewsService;
+import com.zhu.prototype.utils.StringUtils;
 
 @Service("newsService")
 public class NewsServiceImpl implements NewsService {
@@ -75,9 +76,20 @@ public class NewsServiceImpl implements NewsService {
 			pageDTO.setPage(1); // default value
 		}
 
+		if (StringUtils.isNotBlank(pageDTO.getSort())) {
+			String order = StringUtils.isBlank(pageDTO.getOrder()) ? "asc"
+					: pageDTO.getOrder();
+			paramMap.put("orderByClause", pageDTO.getSort() + " " + order);
+		}
+
 		paramMap.put("rows", pageDTO.getRows());
 		paramMap.put("begin", (pageDTO.getPage() - 1) * pageDTO.getRows());
 		return true;
+	}
+
+	@Override
+	public News getNewsById(String id) {
+		return newsMapper.selectByPrimaryKey(id);
 	}
 
 }
