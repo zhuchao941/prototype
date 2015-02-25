@@ -16,9 +16,4 @@ public class BaseController {
 		return request.getContextPath();
 	}
 
-	protected void sendJson(HttpServletResponse response, Object obj)
-			throws IOException {
-		response.setContentType("application/json;charset=utf-8");
-		response.getWriter().write(obj == null ? "" : obj.toString());
-	}
 }
