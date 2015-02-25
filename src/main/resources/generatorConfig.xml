@@ -46,6 +46,9 @@
 			<generatedKey column="id"
 				sqlStatement="select IF(MAX(id) is not null, MAX(id) + 1,CONCAT(DATE_FORMAT(NOW(),'%Y%m%d'),'0001')) from news where abs(datediff(date, now())) = 0;" />
 		</table>
+		
+		<table tableName="comment" domainObjectName="Comment">
+		</table>
 
 	</context>
 </generatorConfiguration>
