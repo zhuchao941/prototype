@@ -54,14 +54,14 @@ $(function(){
 				//加载更多数据
 				loading.data("on",false).fadeIn(800);
 				
-				$.getJSON("getNewsList", {page: itemNum/10 + 1}, function(sqlJson){
+				$.getJSON("getNewsList", {page: itemNum/10 + 1, order: "desc", sort: "date"}, function(sqlJson){
 					/*这里会根据后台返回的数据来判断是否你进行分页或者数据加载完毕这里假设大于30就不在加载数据*/
 					if(itemNum>30000){
 						loading.text('就有这么多了！');
 					}else{
 						var html="";
 						for(var i in sqlJson){
-							html+="<li class='item'><a href='#' class='a-img'><img src='"+ contextPath + "/download/img/" + sqlJson[i].picurl+"'></a>";
+							html+="<li class='item' newsId='" + sqlJson[i].id + "'><a href='#' class='a-img'><img src='"+ contextPath + "/download/img/" + sqlJson[i].picurl+"'></a>";
 							html+="<h2 class='li-title'>"+sqlJson[i].title+"</h2>";
 							html+="<p class='description'>"+sqlJson[i].content+"</p><div class='qianm clearfloat'>";
 							//html+="<span class='sp1'><b>"+sqlJson[i].looked+"</b>浏览</span>";
