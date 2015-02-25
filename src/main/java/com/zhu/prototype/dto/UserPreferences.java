@@ -9,6 +9,7 @@ public class UserPreferences implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String username;
+	private String userid;
 
 	public String getUsername() {
 		return username;
@@ -16,6 +17,14 @@ public class UserPreferences implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 }
