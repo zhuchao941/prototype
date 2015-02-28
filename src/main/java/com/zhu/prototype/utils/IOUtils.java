@@ -3,6 +3,7 @@ package com.zhu.prototype.utils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.core.io.Resource;
 
 public class IOUtils {
 
@@ -54,6 +54,10 @@ public class IOUtils {
 		BufferedOutputStream bos = null;
 		try {
 			String fileName = getFileName(urlStr);
+			File pathDirectory = new File(path);
+			if (!pathDirectory.exists()) {
+				pathDirectory.mkdirs();
+			}
 			logger.info("正在从" + urlStr + "下载图片到" + path + fileName);
 			URL url = new URL(urlStr);
 			bos = new BufferedOutputStream(
