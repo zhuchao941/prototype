@@ -26,6 +26,7 @@
 		<property name="dateToolAttribute" value="dateTool" />
 		<property name="suffix" value=".htm"></property>
 		<property name="exposeSessionAttributes" value="true"></property>
+		<property name="exposeRequestAttributes" value="true"></property>
 	</bean>
 	<bean id="velocityConfigurer"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -40,7 +41,7 @@
 		</property>
 	</bean>
 
-	<bean id="conversionService"
+ 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
