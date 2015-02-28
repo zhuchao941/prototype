@@ -61,7 +61,7 @@ $(function(){
 					}else{
 						var html="";
 						for(var i in sqlJson){
-							html+="<li class='item' newsId='" + sqlJson[i].id + "'><a href='#' class='a-img'><img src='"+ contextPath + "/download/img/" + sqlJson[i].picurl+"'></a>";
+							html+="<li class='item' newsId='" + sqlJson[i].id + "'><a href='javascript:void(0)' class='a-img'><img src='"+ contextPath + "/download/img/" + sqlJson[i].picurl+"'></a>";
 							html+="<h2 class='li-title'>"+sqlJson[i].title+"</h2>";
 							html+="<p class='description'>"+sqlJson[i].content+"</p><div class='qianm clearfloat'>";
 							//html+="<span class='sp1'><b>"+sqlJson[i].looked+"</b>浏览</span>";
