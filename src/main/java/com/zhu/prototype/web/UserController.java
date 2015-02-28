@@ -30,13 +30,13 @@ public class UserController extends BaseController {
 		return "user/login";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String submitLoginForm(User user, HttpSession session) {
 		if ("success".equals(validateUser(user, session))) {
 			return "redirect:news/newsList";
 		}
 		return showLoginPage();
-	}
+	}*/
 
 	private String validateUser(User user, HttpSession session) {
 		if (userService.validateUser(user)) {
