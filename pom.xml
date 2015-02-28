@@ -113,7 +113,22 @@
             <scope>test</scope>
             <version>4.8.2</version>
         </dependency>
-	</dependencies>	
+		<dependency>  
+	        <groupId>org.apache.shiro</groupId>  
+	        <artifactId>shiro-core</artifactId>  
+	        <version>1.2.2</version>  
+	    </dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.2.2</version>
+		</dependency>   
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>   
+	</dependencies>
 	<build>
 		<finalName>prototype</finalName>
 		<plugins>
