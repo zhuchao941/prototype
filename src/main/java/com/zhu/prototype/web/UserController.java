@@ -1,9 +1,13 @@
 package com.zhu.prototype.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,23 +34,28 @@ public class UserController extends BaseController {
 		return "user/login";
 	}
 
-	/*@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String submitLoginForm(User user, HttpSession session) {
-		if ("success".equals(validateUser(user, session))) {
-			return "redirect:news/newsList";
-		}
-		return showLoginPage();
-	}*/
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String onLoginFail(User user, HttpServletRequest request,
+			Model model) {
 
-	private String validateUser(User user, HttpSession session) {
-		if (userService.validateUser(user)) {
-			doLogin(user, session);
-			return "success";
+		String errorClassName = (String) request
+				.getAttribute("shiroLoginFailure");
+
+		String authticationError = null;
+		if (UnknownAccountException.class.getName().equals(errorClassName)) {
+			authticationError = "用户名/密码错误";
+		} else if (IncorrectCredentialsException.class.getName().equals(
+				errorClassName)) {
+			authticationError = "用户名/密码错误";
+		} else if (errorClassName != null) {
+			authticationError = "未知错误：" + errorClassName;
 		}
-		return "fail";
+		model.addAttribute("authticationError", authticationError);
+		return showLoginPage();
+
 	}
 
-	private void doLogin(User user, HttpSession session) {
+	private void buildUserPreferences(User user, HttpSession session) {
 		UserPreferences preferences = new UserPreferences();
 		preferences.setUsername(user.getUsername());
 		session.setAttribute("userPreferences", preferences);
@@ -70,7 +79,7 @@ public class UserController extends BaseController {
 			return showRegisterPage();
 		}
 		userService.register(user);
-		doLogin(user, session);
+		buildUserPreferences(user, session);
 		return new ModelAndView("redirect:news/newsList");
 	}
 
