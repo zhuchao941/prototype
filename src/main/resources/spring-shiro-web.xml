@@ -10,8 +10,8 @@
 	</bean>
 
 	<!-- 凭证匹配器 -->
-	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher">
-		<property name="passwordService" ref="passwordService"></property>
+	<bean id="credentialsMatcher" class="com.zhu.prototype.shiro.credential.PlainPasswordMatcher">
+		<!--  <property name="passwordService" ref="passwordService"></property>-->
 	</bean>
 
 	<bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
@@ -43,6 +43,7 @@
 		<property name="usernameParam" value="username" />
 		<property name="passwordParam" value="password" />
 		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/news/newsList"></property>
 	</bean>
 
 	<!-- Shiro的Web过滤器 -->
