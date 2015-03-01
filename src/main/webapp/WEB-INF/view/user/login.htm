@@ -203,6 +203,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         #if("$!type" == "register")
         	$('#register-btn').click();
         #end
+        
+        #if("$!authticationError" != "")
+        	alert("$!authticationError")
+        #end
       });
    </script>
    <!-- END JAVASCRIPTS -->
