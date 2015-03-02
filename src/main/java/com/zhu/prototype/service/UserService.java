@@ -4,6 +4,8 @@ import com.zhu.prototype.entity.User;
 
 public interface UserService {
 	public boolean register(User user);
-	
+
 	public boolean validateUser(User user);
+
+	public User getUserByUsername(String username);
 }

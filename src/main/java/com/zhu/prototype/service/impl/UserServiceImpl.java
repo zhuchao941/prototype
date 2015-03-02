@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
+	@Override
+	public User getUserByUsername(String username) {
+		return userMapper.selectByPrimaryKey(username);
+	}
+
 }
