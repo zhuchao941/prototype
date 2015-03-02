@@ -39,7 +39,7 @@
 
 	<!-- 基于Form表单的身份验证过滤器 -->
 	<bean id="formAuthenticationFilter"
-		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+		class="com.zhu.prototype.shiro.filter.SessionFormAuthenticationFilter">
 		<property name="usernameParam" value="username" />
 		<property name="passwordParam" value="password" />
 		<property name="loginUrl" value="/login" />
@@ -58,6 +58,7 @@
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
+				/favicon.ico = anon
 				/index.jsp = anon
 				/unauthorized = anon
 				/login = authc
