@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.authc.credential.PasswordService;
 import org.springframework.stereotype.Service;
 
 import com.zhu.prototype.dao.UserMapper;
@@ -18,8 +19,12 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserMapper userMapper;
 
+	@Resource
+	private PasswordService passwordService;
+
 	@Override
 	public boolean register(User user) {
+		user.setPassword(passwordService.encryptPassword(user.getPassword()));
 		return userMapper.insert(user) > 0;
 	}
 
@@ -33,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		example.createCriteria().andUsernameEqualTo(user.getUsername())
 				.andPasswordEqualTo(user.getPassword());
 		List<User> userList = userMapper.selectByExample(example);
-		if(CollectionUtils.isEmpty(userList)){
+		if (CollectionUtils.isEmpty(userList)) {
 			return false;
 		}
 		user = userList.get(0);
