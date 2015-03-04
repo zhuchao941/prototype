@@ -4,10 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -82,13 +80,6 @@ public class UserController extends BaseController {
 		userService.register(user);
 		buildUserPreferences(user, session);
 		return new ModelAndView("redirect:news/newsList");
-	}
-
-	@RequestMapping("/logout")
-	public String logout() {
-		Subject subject = SecurityUtils.getSubject();
-		subject.logout();
-		return "user/login";
 	}
 
 	@ModelAttribute("user")
