@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,11 +33,11 @@ public class NewsController extends BaseController {
 	@Resource
 	private CommentService commentService;
 
+	@RequiresPermissions("news:view")
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/newsList")
-	@ModelAttribute
 	public String newsList(PageDTO pageDTO, Model model) {
-
+		
 		pageDTO.setOrder("desc");
 		pageDTO.setSort("date");
 		List<News> newsList = newsService.getNewsList(new HashMap(), pageDTO);
