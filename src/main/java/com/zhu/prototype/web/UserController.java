@@ -4,8 +4,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,10 +16,8 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.zhu.prototype.dto.UserDTO;
-import com.zhu.prototype.dto.UserPreferences;
 import com.zhu.prototype.entity.User;
 import com.zhu.prototype.service.UserService;
 
@@ -55,31 +56,32 @@ public class UserController extends BaseController {
 	}
 
 	private void buildUserPreferences(User user, HttpSession session) {
-		UserPreferences preferences = new UserPreferences();
-		preferences.setUsername(user.getUsername());
-		session.setAttribute("userPreferences", preferences);
+		session.setAttribute("userPreferences", userService
+				.getUserPreferences(user));
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView showRegisterPage() {
-		ModelAndView mv = new ModelAndView("user/login");
-		mv.addObject("type", "register");
-		return mv;
+	public String showRegisterPage(@ModelAttribute Model model) {
+		model.addAttribute("type", "register");
+		return "user/login";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView submitRegisterForm(
-			@ModelAttribute("user") UserDTO user, Errors errors,
-			HttpSession session) {
+	public String submitRegisterForm(@ModelAttribute("user") UserDTO user,
+			Errors errors, Model model, HttpSession session) {
 
 		userValidator.validate(user, errors);
 		if (errors.hasErrors()) {
 			System.out.println(errors);
-			return showRegisterPage();
+			return showRegisterPage(model);
 		}
 		userService.register(user);
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken(user
+				.getUsername(), user.getPassword2());
+		subject.login(token);
 		buildUserPreferences(user, session);
-		return new ModelAndView("redirect:news/newsList");
+		return "redirect:news/newsList";
 	}
 
 	@ModelAttribute("user")
