@@ -7,6 +7,15 @@
 
 	<bean id="passwordService"
 		class="org.apache.shiro.authc.credential.DefaultPasswordService">
+		<property name="hashService" ref="hashService"></property>
+	</bean>
+	
+	<bean id="hashService" class="org.apache.shiro.crypto.hash.DefaultHashService">
+		<property name="hashAlgorithmName" value="md5"></property>
+		<property name="hashIterations" value="2"></property>
+		<property name="randomNumberGenerator">
+			<bean class="org.apache.shiro.crypto.SecureRandomNumberGenerator"></bean>
+		</property>
 	</bean>
 
 	<!-- 凭证匹配器 
